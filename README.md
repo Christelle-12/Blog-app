@@ -24,9 +24,9 @@
 
 <!-- PROJECT DESCRIPTION -->
 
-# 📖 [blog_app] <a name="about-project"></a>
+# 📖 [blog-app] <a name="about-project"></a>
 
-**[blog_app]**  is a vibrant and engaging website that showcases a wide range of posts. Users can actively participate by commenting and liking content of a blog.
+**[blog-app]**  is a vibrant and engaging website that showcases a wide range of posts. Users can actively participate by commenting and liking content of a blog.
 
 ## 🛠 Built With <a name="built-with"></a>
 
@@ -69,7 +69,7 @@ Clone this repository to your desired folder:
 
 ```sh
   cd blog_app
-  git clone 
+  git clone https://github.com/Christelle-12/blog-app.git
 ```
 
 ### Install
