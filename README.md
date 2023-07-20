@@ -68,7 +68,7 @@ In order to run this project you need:
 Clone this repository to your desired folder:
 
 ```sh
-  cd blog_app
+  cd blog-app
   git clone https://github.com/Christelle-12/blog-app.git
 ```
 
@@ -77,7 +77,7 @@ Clone this repository to your desired folder:
 Install this project with:
 
 ```sh
-  cd blog_app
+  cd blog-app
   bundle install
 ```
 ```sh
