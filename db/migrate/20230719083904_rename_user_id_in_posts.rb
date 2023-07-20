@@ -1,4 +1,3 @@
-# frozen_string_literal: true
 
 class RenameUserIdInPosts < ActiveRecord::Migration[7.0]
   def change
