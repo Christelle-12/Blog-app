@@ -119,7 +119,8 @@ To run tests, run the following command:
 
 ## 🔭 Future Features <a name="future-features"></a>
 
-- [ ] **[Implement CRUD methods]**
+- [ ] **[Add validations]**
+- [ ] **[Add model specs]**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
