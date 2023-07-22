@@ -18,7 +18,7 @@ RSpec.describe User, type: :model do
   end
 
   it 'posts_counter should be an integer greater than or equal to zero' do
-    subject.save 
+    subject.save
     expect(subject.posts_counter).to be >= 0
   end
 
