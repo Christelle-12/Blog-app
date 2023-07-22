@@ -7,7 +7,7 @@ RSpec.describe Comment, type: :model do
   it 'should update post comments_counter after create' do
     expect(post.comments_counter).to eq(0)
 
-    Comment.create(author: user, post: post, text: 'This is the first comment.')
+    Comment.create(author: user, post:, text: 'This is the first comment.')
 
     post.reload
     expect(post.comments_counter).to eq(1)
