@@ -1,1 +1,15 @@
-<h1>this is the show page of post </h1>
+<div>
+  <h2><%= @post.title %></h2>
+  <p><%= @post.text %></p>
+  <p>Likes: <%= @post.likes.count %></p>
+  <p>Comments: <%= @comments.count %></p>
+
+  <!-- Add your comments display here -->
+  <ul>
+    <% @comments.each do |comment| %>
+      <li>
+        <strong><%= comment.author.name %>:</strong> <%= comment.text %>
+      </li>
+    <% end %>
+  </ul>
+</div>

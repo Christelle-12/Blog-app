@@ -1,1 +1,22 @@
-<h1>this is the main page of post</h1>
+<div>
+  <img src="<%= @user.photo %>" alt="individual user photo">
+  <div>
+    <h3><%= @user.name %></h3>
+    <p>Number of posts: <%= @user.posts_counter || 0 %></p>
+  </div>
+</div>
+
+<div>
+  <% @posts.each do |post| %>
+    <h2><%= post.title %></h2>
+    <p><%= post.text %></p>
+    <p>Likes: <%= post.likes.count %></p>
+    <p>Comments: <%= post.comments.count %></p>
+    <ul>
+      <% post.comments.each do |comment| %>
+        <li><%= comment.text %></li>
+      <% end %>
+    </ul>
+  <% end %>
+  <button>pagination</button>
+</div>
