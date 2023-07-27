@@ -7,6 +7,8 @@ class Post < ApplicationRecord
   validates :comments_counter, numericality: { greater_than_or_equal_to: 0 }
   validates :likes_counter, numericality: { greater_than_or_equal_to: 0 }
 
+  after_create :update_user_posts_counter
+
   after_initialize do
     self.comments_counter ||= 0
     self.likes_counter ||= 0
@@ -17,6 +19,7 @@ class Post < ApplicationRecord
   end
 
   def update_user_posts_counter
-    author.increment!(:posts_counter)
+    author.update(posts_counter: author.posts.count)
   end
+  
 end
