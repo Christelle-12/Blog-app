@@ -1,18 +1,23 @@
-<div>
-  <img src="<%= @user.photo %>" alt="individual user photo">
-  <div>
+<h1><%=@user.name%>'s Page</h1>
+<div class="user-card">
+  <div class="user-info">
     <h3><%= @user.name %></h3>
     <p>Number of posts: <%= @user.posts_counter || 0 %></p>
   </div>
-  <div>
+  <img class="user-photo" src="<%= @user.photo %>" alt="User photo">
+</div>
+<div class="card">
+    <h2>Bio</h2>
     <p><%= @user.bio %></p>
-  </div>
 </div>
 
-<div>
-  <% @posts.each do |post| %>
-    <h2><%= post.title %></h2>
+<% @posts.each do |post| %>
+ <%= link_to user_posts_path(@user), class: "user-card-link" do %>
+  <div class= "card">
+    <h3><%= post.title %></h3>
     <p><%= post.text %></p>
-  <% end %>
-</div>
-<%= link_to "See all posts", user_posts_path(@user) %>
+  </div>
+ <%end%>
+<% end %>
+
+<%= link_to "See all posts", user_posts_path(@user), class: "button" %>

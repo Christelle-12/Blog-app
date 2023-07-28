@@ -1,24 +1,36 @@
-<div>
-  <img src="<%= @user.photo %>" alt="individual user photo">
-  <div>
+<h2><%= @user.name %>'s Posts page</h2>
+<div class="user-card">
+  <div class="user-info">
     <h3><%= @user.name %></h3>
     <p>Number of posts: <%= @user.posts_counter || 0 %></p>
   </div>
+  <img class="user-photo" src="<%= @user.photo %>" alt="individual user photo">
 </div>
 
 <div>
   <% @posts.each do |post| %>
-    <%= link_to user_post_path(user_id: @user.id, id: post.id) do %>
-      <h2><%= post.title %></h2>
-    <% end %>
-    <p><%= post.text %></p>
-    <p>Likes: <%= post.likes.count %></p>
-    <p>Comments: <%= post.comments.count %></p>
-    <ul>
-      <% post.comments.each do |comment| %>
-        <li><%= comment.text %></li>
-      <% end %>
-    </ul>
+    <%= link_to user_post_path(user_id: @user.id, id: post.id), class: "user-card-link" do %>
+    <div class="card">
+     <h2><%= post.title %></h2>
+     <p><%= post.text %></p>
+     <div class ="like-com">
+      <p>Likes: <%= post.likes.count %></p>
+      <p>Comments: <%= post.comments.count %></p>
+    </div>
   <% end %>
-  <button>pagination</button>
+
+   </div>
+   <% if post.comments.any? %>
+      <div class="card">
+        <ul class="ul">
+          <% post.comments.each do |comment| %>
+            <li><%= comment.text %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% else %>
+      <p class="card">No comments for this post.</p>
+    <% end %>
+  <% end %>
+  <button class="button">pagination</button>
 </div>

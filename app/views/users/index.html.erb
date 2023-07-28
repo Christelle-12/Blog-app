@@ -1,10 +1,12 @@
-<h1> List of All Users</h1>
-<% @users.each do|user|%>
- <%= link_to user_path(user) do %>
-  <div>
-   <h3><%= user.name %></h3>
-      <img src="<%= user.photo %>" alt="User Photo">
-      <p>Number of posts: <%= user.posts_counter || 0 %></p>
-  </div>
- <% end %>
-<%end%>
+<h1>List of All Users</h1>
+<% @users.each do |user| %>
+  <%= link_to user_path(user), class: "user-card-link" do %>
+    <div class="user-card">
+      <div class="user-info">
+        <h3 class="user-name"><%= user.name %></h3>
+        <p class="post-count">Number of posts: <%= user.posts_counter || 0 %></p>
+      </div>
+      <img class="user-photo" src="<%= user.photo %>" alt="User Photo">
+    </div>
+  <% end %>
+<% end %>
