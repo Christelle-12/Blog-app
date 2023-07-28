@@ -23,9 +23,9 @@
    <% if post.comments.any? %>
       <div class="card">
         <ul class="ul">
-          <% post.comments.each do |comment| %>
-            <li><%= comment.text %></li>
-          <% end %>
+          <% post.comments.order(created_at: :desc).limit(5).each do |comment| %>
+           <li><%= comment.text %></li>
+           <% end %>
         </ul>
       </div>
     <% else %>
