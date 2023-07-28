@@ -1,1 +1,23 @@
-<h1>this is the show page of user </h1>
+<h1><%=@user.name%>'s Page</h1>
+<div class="user-card">
+  <div class="user-info">
+    <h3><%= @user.name %></h3>
+    <p>Number of posts: <%= @user.posts_counter || 0 %></p>
+  </div>
+  <img class="user-photo" src="<%= @user.photo %>" alt="User photo">
+</div>
+<div class="card">
+    <h2>Bio</h2>
+    <p><%= @user.bio %></p>
+</div>
+
+<% @posts.each do |post| %>
+ <%= link_to user_posts_path(@user), class: "user-card-link" do %>
+  <div class= "card">
+    <h3><%= post.title %></h3>
+    <p><%= post.text %></p>
+  </div>
+ <%end%>
+<% end %>
+
+<%= link_to "See all posts", user_posts_path(@user), class: "button" %>
