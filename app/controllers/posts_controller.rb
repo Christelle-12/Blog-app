@@ -3,16 +3,17 @@ class PostsController < ApplicationController
     @user = User.find(params[:user_id])
     @posts = @user.posts
   end
+
   def new
     @new_user_post = Post.new
   end
 
   def show
-  @user = User.find(params[:user_id])
-  @post = @user.posts.find(params[:id])
-  @comments = @post.comments.order(created_at: :desc).limit(5)
-  @likes_count = @post.likes.count
-  @comments_count = @post.comments.count
+    @user = User.find(params[:user_id])
+    @post = @user.posts.find(params[:id])
+    @comments = @post.comments.order(created_at: :desc).limit(5)
+    @likes_count = @post.likes.count
+    @comments_count = @post.comments.count
   end
 
   def create
@@ -37,7 +38,7 @@ class PostsController < ApplicationController
   #     redirect_to user_post_path(user_id: @post.author.id, id: @post.id), alert: 'Failed to like the post.'
   #   end
   # end
- 
+
   private
 
   def values
