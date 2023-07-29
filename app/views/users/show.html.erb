@@ -10,7 +10,7 @@
     <h2>Bio</h2>
     <p><%= @user.bio %></p>
 </div>
-<%= link_to 'Create New Post', new_user_post_path(params[:id]), class: 'create-post' %>
+<%= link_to 'Create New Post', new_user_post_path(params[:id]), class: 'button' %>
  <% @posts.each do |post| %>
  <%= link_to user_posts_path(@user), class: "user-card-link" do %>
   <div class= "card">
