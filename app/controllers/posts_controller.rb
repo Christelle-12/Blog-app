@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   def index
     @user = User.find(params[:user_id])
-    @posts = @user.posts
+    @posts = @user.posts.includes(:likes, :comments)
   end
 
   def new
@@ -10,7 +10,7 @@ class PostsController < ApplicationController
 
   def show
     @user = User.find(params[:user_id])
-    @post = @user.posts.find(params[:id])
+    @post = @user.posts.includes(:likes, :comments).find(params[:id]) # Eager loading likes and comments
     @comments = @post.comments.order(created_at: :desc).limit(5)
     @likes_count = @post.likes.count
     @comments_count = @post.comments.count

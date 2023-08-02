@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
-    @posts = @user.recent_posts
+    @user = User.includes(posts: [:likes, :comments]).find(params[:id])
+    @posts = @user.posts.includes(:comments, :likes).order(created_at: :desc).limit(3)
   end
 end
