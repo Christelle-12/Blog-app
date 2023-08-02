@@ -44,9 +44,6 @@ RSpec.describe 'Post index page', type: :feature do
   end
 
   scenario 'I can see a section for pagination if there are more posts than fit on the view' do
-    # Ensure that the posts on the first page are displayed (3 posts)
-    # expect(page).to have_selector('.user-card-link.pagination-section', count: 3, wait: 5)
-
     # Check if pagination controls are present
     expect(page).to have_selector('.pagination-section', wait: 5)
   end
