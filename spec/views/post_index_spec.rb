@@ -2,8 +2,10 @@ require 'rails_helper'
 
 RSpec.describe 'Post index page', type: :feature do
   let(:user) { FactoryBot.create(:user) }
-  let!(:posts) { FactoryBot.create_list(:post, 11, author: user) } # Use let! to ensure posts are created before each scenario
-
+  # Use let! to ensure posts are created before each scenario
+  let!(:posts) do
+    FactoryBot.create_list(:post, 11, author: user)
+  end
   before do
     visit user_posts_path(user)
   end
@@ -44,12 +46,11 @@ RSpec.describe 'Post index page', type: :feature do
   scenario 'I can see a section for pagination if there are more posts than fit on the view' do
     # Ensure that the posts on the first page are displayed (3 posts)
     # expect(page).to have_selector('.user-card-link.pagination-section', count: 3, wait: 5)
-  
+
     # Check if pagination controls are present
     expect(page).to have_selector('.pagination-section', wait: 5)
   end
-  
-  
+
   scenario 'When I click on a post, it redirects me to that post\'s show page' do
     click_on posts.last.title # Click on the link of the last post in the list
     expect(current_path).to eq(user_post_path(user, posts.last))

@@ -3,17 +3,17 @@ require 'rails_helper'
 RSpec.describe 'Post show page', type: :feature do
   let(:user) { FactoryBot.create(:user) }
   let(:post) { FactoryBot.create(:post, author: user) }
-  let!(:comments) { FactoryBot.create_list(:comment, 3, post: post, author: user) }
+  let!(:comments) { FactoryBot.create_list(:comment, 3, post:, author: user) }
 
   before do
     # Set the initial number of likes
     post.update(likes_counter: 5)
 
-      # Manually add likes to the post to update likes_counter
-   FactoryBot.create_list(:like, 3, post: post)
+    # Manually add likes to the post to update likes_counter
+    FactoryBot.create_list(:like, 3, post:)
 
-  # Reload the post to update the likes_counter
-  post.reload
+    # Reload the post to update the likes_counter
+    post.reload
 
     visit user_post_path(post.author, post)
   end
