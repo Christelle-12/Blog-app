@@ -47,4 +47,9 @@ RSpec.describe 'User show page', type: :feature do
     visit user_post_path(@user, @post)
     expect(page).to have_button('Like Post')
   end
+  scenario 'When I click on a user, I am redirected to that users show page' do
+    visit user_path(@user)
+    click_on @user.name
+    expect(page).to have_content(@user.name)
+  end
 end
