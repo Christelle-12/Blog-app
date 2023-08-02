@@ -1,4 +1,3 @@
-# spec/features/user_index_spec.rb
 require 'rails_helper'
 
 RSpec.describe 'User index page', type: :feature do
@@ -24,6 +23,13 @@ RSpec.describe 'User index page', type: :feature do
     visit users_path
     User.all.each do |user|
       expect(page).to have_content("Number of posts: #{user.posts_counter}")
+    end
+  end
+
+  scenario 'When I click on a user, I am redirected to that user s show page' do
+    User.all.each do |_user|
+      click_link(href: user_path(@user))
+      expect(page).to have_current_path(user_path(@user))
     end
   end
 end
