@@ -19,7 +19,7 @@ class PostsController < ApplicationController
   def create
     return unless current_user
 
-    @post = Post.new(author: @current_user, title: values[:title], text: values[:text])
+    @post = Post.new(author: current_user, title: params[:post][:title], text: params[:post][:text])
 
     if @post.save
       redirect_to user_post_path(params[:user_id], @post)
@@ -28,20 +28,24 @@ class PostsController < ApplicationController
     end
   end
 
-  # def add_like
-  #   @post = Post.find(params[:id])
-  #   @like = @post.likes.build(author: current_user)
-
-  #   if @like.save
-  #     redirect_to user_post_path(user_id: @post.author.id, id: @post.id), notice: 'Post liked successfully.'
-  #   else
-  #     redirect_to user_post_path(user_id: @post.author.id, id: @post.id), alert: 'Failed to like the post.'
-  #   end
-  # end
-
-  private
-
-  def values
-    params.require(:post).permit(:title, :text)
+  def destroy
+    @user = User.find(params[:user_id])
+    @post = @user.posts.find(params[:id])
+  
+    # Check if the user is authorized to delete the post
+    authorize! :destroy, @post
+  
+    # Delete associated likes first
+    Like.where(post_id: @post.id).destroy_all
+  
+    # Delete associated comments
+    Comment.where(post_id: @post.id).destroy_all
+  
+    if @post.destroy
+      redirect_to user_posts_path(@user), notice: 'Post deleted successfully.'
+    else
+      redirect_to user_post_path(@user, @post), alert: 'Failed to delete the post.'
+    end
   end
+  
 end

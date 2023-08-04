@@ -13,6 +13,18 @@ class CommentsController < ApplicationController
       render :new, alert: 'Error: Could not add comment.'
     end
   end
+  def destroy
+    @comment = Comment.find(params[:id])
+
+    # Check if the user is authorized to delete the comment
+    authorize! :destroy, @comment
+
+    if @comment.destroy
+      redirect_to user_post_path(params[:user_id], params[:post_id]), notice: 'Comment deleted successfully.'
+    else
+      redirect_to user_post_path(params[:user_id], params[:post_id]), alert: 'Failed to delete the comment.'
+    end
+  end
 
   private
 
